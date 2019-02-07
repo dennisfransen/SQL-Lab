@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class WordListAdapter extends RecyclerView.Adapter <WordListAdapter.WordViewHolder> {
+public class GroceryListAdapter extends RecyclerView.Adapter <GroceryListAdapter.WordViewHolder> {
 
     class WordViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
@@ -21,9 +21,9 @@ public class WordListAdapter extends RecyclerView.Adapter <WordListAdapter.WordV
     }
 
     private final LayoutInflater mInflater;
-    private List<Word> mWords; // Cached copy of words
+    private List<Grocery> mGroceries; // Cached copy of words
 
-    WordListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    GroceryListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -33,26 +33,26 @@ public class WordListAdapter extends RecyclerView.Adapter <WordListAdapter.WordV
 
     @Override
     public void onBindViewHolder(WordViewHolder holder, int position) {
-        if (mWords != null) {
-            Word current = mWords.get(position);
-            holder.wordItemView.setText(current.getWord());
+        if (mGroceries != null) {
+            Grocery current = mGroceries.get(position);
+            holder.wordItemView.setText(current.getmGroceryName());
         } else {
             // Covers the case of data not being ready yet.
-            holder.wordItemView.setText("No Word");
+            holder.wordItemView.setText("No Grocery");
         }
     }
 
-    void setWords(List<Word> words){
-        mWords = words;
+    void setWords(List<Grocery> groceries){
+        mGroceries = groceries;
         notifyDataSetChanged();
     }
 
     // getItemCount() is called many times, and when it is first called,
-    // mWords has not been updated (means initially, it's null, and we can't return null).
+    // mGroceries has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (mWords != null)
-            return mWords.size();
+        if (mGroceries != null)
+            return mGroceries.size();
         else return 0;
     }
 }

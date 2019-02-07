@@ -8,16 +8,16 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 @Dao
-public interface WordDao {
+public interface GroceryDao {
 
     @Insert
-    void insert(Word word);
+    void insert(Grocery grocery);
 
-    @Query("DELETE FROM word_table")
+    @Query("DELETE FROM grocery_table")
     void deleteAll();
 
-    @Query("SELECT * from word_table ORDER BY word ASC")
-    LiveData<List<Word>> getAllWords();
+    @Query("SELECT * from grocery_table ORDER BY grocery ASC")
+    LiveData<List<Grocery>> getAllGroceries();
 
 
 }

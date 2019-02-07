@@ -8,12 +8,12 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Word.class}, version = 1)
-public abstract class WordRoomDatabase extends RoomDatabase {
+@Database(entities = {Grocery.class}, version = 1)
+public abstract class GroceryRoomDatabase extends RoomDatabase {
 
-    public abstract WordDao wordDao();
+    public abstract GroceryDao groceryDao();
 
-    private static volatile WordRoomDatabase INSTANCE;
+    private static volatile GroceryRoomDatabase INSTANCE;
 
     private static RoomDatabase.Callback sRoomDatabaseCallback =
             new RoomDatabase.Callback(){
@@ -28,31 +28,31 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
-        private final WordDao mDao;
+        private final GroceryDao mDao;
 
-        PopulateDbAsync(WordRoomDatabase db) {
-            mDao = db.wordDao();
+        PopulateDbAsync(GroceryRoomDatabase db) {
+            mDao = db.groceryDao();
         }
 
         @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
-            Word word = new Word("Hello");
-            mDao.insert(word);
-            word = new Word("World");
-            mDao.insert(word);
+            Grocery grocery = new Grocery("Banana");
+            mDao.insert(grocery);
+            grocery = new Grocery("Coca-Cola");
+            mDao.insert(grocery);
             return null;
         }
     }
 
 
-    static WordRoomDatabase getDatabase(final Context context) {
+    static GroceryRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (WordRoomDatabase.class) {
+            synchronized (GroceryRoomDatabase.class) {
                 if (INSTANCE == null) {
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            WordRoomDatabase.class, "word_database")
+                            GroceryRoomDatabase.class, "grocery_database")
                             .addCallback(sRoomDatabaseCallback).build();
                 }
             }

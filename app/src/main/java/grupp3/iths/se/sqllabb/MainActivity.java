@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private WordViewModel mWordViewModel;
+    private GroceryViewModel mGroceryViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
@@ -40,16 +39,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final WordListAdapter adapter = new WordListAdapter(this);
+        final GroceryListAdapter adapter = new GroceryListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
-        mWordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
+        mGroceryViewModel = ViewModelProviders.of(this).get(GroceryViewModel.class);
+        mGroceryViewModel.getAllGroceries().observe(this, new Observer<List<Grocery>>() {
             @Override
-            public void onChanged(@Nullable final List<Word> words) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setWords(words);
+            public void onChanged(@Nullable final List<Grocery> groceries) {
+                // Update the cached copy of the groceries in the adapter.
+                adapter.setWords(groceries);
             }
         });
     }
@@ -80,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
-            mWordViewModel.insert(word);
+            Grocery grocery = new Grocery(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
+            mGroceryViewModel.insert(grocery);
         } else {
             Toast.makeText(
                     getApplicationContext(),
