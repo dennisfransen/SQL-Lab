@@ -17,7 +17,7 @@ public class GroceryRepository {
         mAllGroceries = mGroceryDao.getAllGroceries();
     }
 
-    LiveData<List<Grocery>> getAllWords() {
+    LiveData<List<Grocery>> getAllGroceries() {
         return mAllGroceries;
     }
 

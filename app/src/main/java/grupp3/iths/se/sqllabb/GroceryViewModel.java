@@ -14,7 +14,7 @@ public class GroceryViewModel extends AndroidViewModel {
     public GroceryViewModel(Application application) {
         super(application);
         mRepository = new GroceryRepository(application);
-        mAllGroceries = mRepository.getAllWords();
+        mAllGroceries = mRepository.getAllGroceries();
     }
 
     public LiveData<List<Grocery>> getmAllGroceries() {

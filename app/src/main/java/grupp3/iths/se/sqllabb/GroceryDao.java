@@ -19,5 +19,7 @@ public interface GroceryDao {
     @Query("SELECT * from grocery_table ORDER BY mGroceryName ASC")
     LiveData<List<Grocery>> getAllGroceries();
 
+    @Query("SELECT * from grocery_table ORDER BY mGroceryQuantity ASC")
+    LiveData<List<Grocery>> getAllGroceriesQuantity();
 
 }
