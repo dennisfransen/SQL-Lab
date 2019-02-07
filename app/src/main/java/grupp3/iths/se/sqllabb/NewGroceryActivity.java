@@ -8,28 +8,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class NewWordActivity extends AppCompatActivity {
+public class NewGroceryActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
 
-    private EditText mEditWordView;
+    private EditText mEditGroceryView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_word);
+        setContentView(R.layout.activity_new_grocery);
 
-        mEditWordView = findViewById(R.id.edit_word);
+        mEditGroceryView = findViewById(R.id.edit_grocery_name);
 
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(mEditWordView.getText())) {
+                if (TextUtils.isEmpty(mEditGroceryView.getText())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
-                    String word = mEditWordView.getText().toString();
-                    replyIntent.putExtra(EXTRA_REPLY, word);
+                    String groceryName = mEditGroceryView.getText().toString();
+                    replyIntent.putExtra(EXTRA_REPLY, groceryName);
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

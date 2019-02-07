@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
+                Intent intent = new Intent(MainActivity.this, NewGroceryActivity.class);
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Grocery grocery = new Grocery(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
+            Grocery grocery = new Grocery(data.getStringExtra(NewGroceryActivity.EXTRA_REPLY));
             mGroceryViewModel.insert(grocery);
         } else {
             Toast.makeText(

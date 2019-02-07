@@ -9,36 +9,38 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class GroceryListAdapter extends RecyclerView.Adapter <GroceryListAdapter.WordViewHolder> {
+public class GroceryListAdapter extends RecyclerView.Adapter <GroceryListAdapter.GroceryViewModel> {
 
-    class WordViewHolder extends RecyclerView.ViewHolder {
-        private final TextView wordItemView;
+    class GroceryViewModel extends RecyclerView.ViewHolder {
+        private final TextView GroceryItemView;
 
-        private WordViewHolder(View itemView) {
+        private GroceryViewModel(View itemView) {
             super(itemView);
-            wordItemView = itemView.findViewById(R.id.textView);
+            GroceryItemView = itemView.findViewById(R.id.textView);
         }
     }
 
     private final LayoutInflater mInflater;
     private List<Grocery> mGroceries; // Cached copy of words
 
-    GroceryListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
-
-    @Override
-    public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-        return new WordViewHolder(itemView);
+    GroceryListAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
     }
 
     @Override
-    public void onBindViewHolder(WordViewHolder holder, int position) {
+    public GroceryViewModel onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        return new GroceryViewModel(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(GroceryViewModel holder, int position) {
         if (mGroceries != null) {
             Grocery current = mGroceries.get(position);
-            holder.wordItemView.setText(current.getmGroceryName());
+            holder.GroceryItemView.setText(current.getmGroceryName());
         } else {
             // Covers the case of data not being ready yet.
-            holder.wordItemView.setText("No Grocery");
+            holder.GroceryItemView.setText("No Grocery");
         }
     }
 

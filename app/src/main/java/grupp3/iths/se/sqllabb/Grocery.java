@@ -11,9 +11,9 @@ public class Grocery {
 
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "grocery")
+    @ColumnInfo(name = "mGroceryName")
 
-    private String mGroceryName;
+    public String mGroceryName;
 
     public Grocery(@NonNull String mGroceryName) {
         this.mGroceryName = mGroceryName;

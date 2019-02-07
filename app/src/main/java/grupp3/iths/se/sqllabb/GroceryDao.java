@@ -16,7 +16,7 @@ public interface GroceryDao {
     @Query("DELETE FROM grocery_table")
     void deleteAll();
 
-    @Query("SELECT * from grocery_table ORDER BY grocery ASC")
+    @Query("SELECT * from grocery_table ORDER BY mGroceryName ASC")
     LiveData<List<Grocery>> getAllGroceries();
 
 

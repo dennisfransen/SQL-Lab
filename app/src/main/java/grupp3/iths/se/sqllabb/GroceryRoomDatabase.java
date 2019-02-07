@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Grocery.class}, version = 1)
+@Database(entities = {Grocery.class}, version = 1, exportSchema = false)
 public abstract class GroceryRoomDatabase extends RoomDatabase {
 
     public abstract GroceryDao groceryDao();
@@ -31,6 +31,7 @@ public abstract class GroceryRoomDatabase extends RoomDatabase {
         private final GroceryDao mDao;
 
         PopulateDbAsync(GroceryRoomDatabase db) {
+
             mDao = db.groceryDao();
         }
 
