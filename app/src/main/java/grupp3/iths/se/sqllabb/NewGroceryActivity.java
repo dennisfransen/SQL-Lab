@@ -10,9 +10,11 @@ import android.widget.EditText;
 
 public class NewGroceryActivity extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
+    public static final String EXTRA_NAME = "nameOfGrocery";
+    public static final String EXTRA_QUANTITY = "quantityOfGrocery";
 
     private EditText mEditGroceryView;
+    private EditText mEditGroceryQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,16 +22,19 @@ public class NewGroceryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_grocery);
 
         mEditGroceryView = findViewById(R.id.edit_grocery_name);
+        mEditGroceryQuantity = findViewById(R.id.edit_grocery_number);
 
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(mEditGroceryView.getText())) {
+                if (TextUtils.isEmpty(mEditGroceryView.getText()) || TextUtils.isEmpty(mEditGroceryQuantity.getText())) {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     String groceryName = mEditGroceryView.getText().toString();
-                    replyIntent.putExtra(EXTRA_REPLY, groceryName);
+                    String groceryQuantity = mEditGroceryQuantity.getText().toString();
+                    replyIntent.putExtra(EXTRA_NAME, groceryName);
+                    replyIntent.putExtra(EXTRA_QUANTITY, groceryQuantity);
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

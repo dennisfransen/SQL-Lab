@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Grocery grocery = new Grocery(data.getStringExtra(NewGroceryActivity.EXTRA_REPLY));
+        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) { // CHANGED AND ADDED data.getIntExtra(NewGroceryActivity.EXTRA_NAME, 0)
+            //Grocery grocery = new Grocery(data.getStringExtra(NewGroceryActivity.EXTRA_NAME), data.getIntExtra(String.valueOf(NewGroceryActivity.EXTRA_QUANTITY), 0));
+            Grocery grocery = new Grocery(data.getStringExtra(NewGroceryActivity.EXTRA_NAME), data.getStringExtra(NewGroceryActivity.EXTRA_QUANTITY));
             mGroceryViewModel.insert(grocery);
         } else {
             Toast.makeText(

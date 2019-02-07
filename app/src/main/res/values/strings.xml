@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="hint_word">Grocery...</string>
+    <string name="hint_number">#"</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Grocery not saved because it is empty.</string>
 

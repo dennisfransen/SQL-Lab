@@ -12,15 +12,24 @@ public class Grocery {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "mGroceryName")
-
     public String mGroceryName;
 
-    public Grocery(@NonNull String mGroceryName) {
+    @NonNull
+    @ColumnInfo(name = "mGroceryQuantity")
+    public String mGroceryQuantity;
+
+    public Grocery(@NonNull String mGroceryName, @NonNull String mGroceryQuantity) {
         this.mGroceryName = mGroceryName;
+        this.mGroceryQuantity = mGroceryQuantity;
     }
 
     @NonNull
     public String getmGroceryName() {
         return mGroceryName;
+    }
+
+    @NonNull
+    public String getmGroceryQuantity() {
+        return mGroceryQuantity;
     }
 }

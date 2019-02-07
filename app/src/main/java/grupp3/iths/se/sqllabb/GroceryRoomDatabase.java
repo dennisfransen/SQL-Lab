@@ -38,9 +38,9 @@ public abstract class GroceryRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
-            Grocery grocery = new Grocery("Banana");
+            Grocery grocery = new Grocery("Banana", "3");
             mDao.insert(grocery);
-            grocery = new Grocery("Coca-Cola");
+            grocery = new Grocery("Coca-Cola", "1");
             mDao.insert(grocery);
             return null;
         }

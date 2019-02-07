@@ -13,10 +13,12 @@ public class GroceryListAdapter extends RecyclerView.Adapter <GroceryListAdapter
 
     class GroceryViewModel extends RecyclerView.ViewHolder {
         private final TextView GroceryItemView;
+        private final TextView GroceryQuantity;
 
         private GroceryViewModel(View itemView) {
             super(itemView);
             GroceryItemView = itemView.findViewById(R.id.textView);
+            GroceryQuantity = itemView.findViewById(R.id.number_textView);
         }
     }
 
@@ -38,9 +40,11 @@ public class GroceryListAdapter extends RecyclerView.Adapter <GroceryListAdapter
         if (mGroceries != null) {
             Grocery current = mGroceries.get(position);
             holder.GroceryItemView.setText(current.getmGroceryName());
+            holder.GroceryQuantity.setText(String.valueOf(current.getmGroceryQuantity()));
         } else {
             // Covers the case of data not being ready yet.
             holder.GroceryItemView.setText("No Grocery");
+            holder.GroceryQuantity.setText("No Quantity");
         }
     }
 
